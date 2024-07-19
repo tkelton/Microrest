@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flying Text</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: sans-serif;
+            background-color: black; /* Black background */
+            color: white; /* White text */
+        }
+
+        .moving-text {
+            position: absolute;
+            font-size: 24px;
+            white-space: nowrap;
+            font-family: sans-serif;
+            transition: top 2s, left 2s, transform 2s;
+        }
+
+        .static {
+            animation: none !important;
+            transform: none !important;
+        }
+
+        /* Each sentence has a unique animation */
+        #sentence1 {
+            animation: move1 60s infinite linear;
+        }
+
+        #sentence2 {
+            animation: move2 45s infinite linear;
+        }
+
+        #sentence3 {
+            animation: move3 36s infinite linear;
+        }
+
+        #sentence4 {
+            animation: move4 40s infinite linear;
+        }
+
+        #sentence5 {
+            animation: move5 36s infinite linear;
+        }
+
+        @keyframes move1 {
+            0% {
+                top: 50%;
+                left: 35%;
+                transform: rotate(0deg);
+            }
+            25% {
+                top: 70%;
+                left: 30%;
+                transform: rotate(45deg);
+            }
+            50% {
+                top: 30%;
+                left: 110%;
+                transform: rotate(90deg);
+            }
+            75% {
+                top: 10%;
+                left: 30%;
+                transform: rotate(135deg);
+            }
+            100% {
+                top: 10%;
+                left: 70%;
+                transform: rotate(180deg);
+            }
+        }
+
+        @keyframes move2 {
+            0% {
+                top: 5%;
+                left: 35%;
+                transform: rotate(10deg);
+            }
+            25% {
+                top: 80%;
+                left: 0%;
+                transform: rotate(50deg);
+            }
+            50% {
+                top: 40%;
+                left: 100%;
+                transform: rotate(100deg);
+            }
+            75% {
+                top: 10%;
+                left: 90%;
+                transform: rotate(150deg);
+            }
+            100% {
+                top: 20%;
+                left: 70%;
+                transform: rotate(200deg);
+            }
+        }
+
+        @keyframes move3 {
+            0% {
+                top: 95%;
+                left: 1%;
+                transform: rotate(20deg);
+            }
+            25% {
+                top: 30%;
+                left: 80%;
+                transform: rotate(60deg);
+            }
+            50% {
+                top: 80%;
+                left: 70%;
+                transform: rotate(120deg);
+            }
+            75% {
+                top: 20%;
+                left: 50%;
+                transform: rotate(180deg);
+            }
+            100% {
+                top: 50%;
+                left: 20%;
+                transform: rotate(240deg);
+            }
+        }
+
+        @keyframes move4 {
+            0% {
+                top: 95%;
+                left: 95%;
+                transform: rotate(30deg);
+            }
+            25% {
+                top: 10%;
+                left: 90%;
+                transform: rotate(70deg);
+            }
+            50% {
+                top: 70%;
+                left: 30%;
+                transform: rotate(140deg);
+            }
+            75% {
+                top: 30%;
+                left: 70%;
+                transform: rotate(210deg);
+            }
+            100% {
+                top: 90%;
+                left: 50%;
+                transform: rotate(280deg);
+            }
+        }
+
+        @keyframes move5 {
+            0% {
+                top: 95%;
+                left: 35%;
+                transform: rotate(40deg);
+            }
+            25% {
+                top: 50%;
+                left: 60%;
+                transform: rotate(80deg);
+            }
+            50% {
+                top: 70%;
+                left: 10%;
+                transform: rotate(160deg);
+            }
+            75% {
+                top: 10%;
+                left: 80%;
+                transform: rotate(240deg);
+            }
+            100% {
+                top: 30%;
+                left: 30%;
+                transform: rotate(320deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="moving-text" id="sentence1">24 workers have not trained data for 17 hrs and 3 mins</div>
+    <div class="moving-text" id="sentence2">MICROREST</div>
+    <div class="moving-text" id="sentence3">Donate</div>
+    <div class="moving-text" id="sentence4">About</div>
+    <div class="moving-text" id="sentence5">Rest your mouse anywhere in the grid</div>
+
+    <script>
+        let isMouseActive = false;
+        let timeout;
+
+        document.addEventListener('mousemove', () => {
+            clearTimeout(timeout);
+            if (!isMouseActive) {
+                isMouseActive = true;
+                document.getElementById('sentence1').classList.add('static');
+                document.getElementById('sentence1').style.top = 'center';
+                document.getElementById('sentence1').style.center = '0%';
+
+                document.getElementById('sentence2').classList.add('static');
+                document.getElementById('sentence2').style.top = '5%';
+                document.getElementById('sentence2').style.center = '0%';
+
+                document.getElementById('sentence3').classList.add('static');
+                document.getElementById('sentence3').style.top = '95%';
+                document.getElementById('sentence3').style.left = '1%';
+
+                document.getElementById('sentence4').classList.add('static');
+                document.getElementById('sentence4').style.top = '95%';
+                document.getElementById('sentence4').style.left = '95%';
+
+                document.getElementById('sentence5').classList.add('static');
+                document.getElementById('sentence5').style.top = '95%';
+                document.getElementById('sentence5').style.center = '0%';
+            }
+            timeout = setTimeout(() => {
+                isMouseActive = false;
+                document.querySelectorAll('.moving-text').forEach(el => {
+                    el.classList.remove('static');
+                    el.style.top = '';
+                    el.style.left = '';
+                });
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
